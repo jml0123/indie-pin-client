@@ -1,0 +1,47 @@
+.about-page {
+    height: 100vh;
+    width: 100vw;
+    background: #f1f1f1;
+    font-family: "Press Start 2P", monospace;
+}
+.about-content-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 25% 5%;
+    width: 88vw;
+    margin: 0 auto;
+}
+
+.about-info-container h1 {
+    padding: 2.5%;
+}
+
+.about-img-wrapper{
+    padding: 0.33em;
+    border-radius: 100%;
+    max-width: 200px;
+    min-width: 75px;
+    width: 9vw;
+    margin: 0 auto;
+    -webkit-box-shadow: 7px 7px 2px 0px rgba(50, 50, 50, 0.75);
+    -moz-box-shadow:    7px 7px 2px 0px rgba(50, 50, 50, 0.75);
+    box-shadow:         7px 7px 2px 0px rgba(50, 50, 50, 0.75);
+}
+
+.about-img-wrapper img {
+    border-radius: 100%;
+    width: 100%;
+    height: auto;
+}
+.about-description-wrapper {
+    padding: 5% 2.5%;
+    line-height: 1.44em;
+}
+
+@media (min-width: 768px) {
+     .about-content-wrapper {
+        width: 44vw;
+        padding: 10% 5%;
+    }
+}

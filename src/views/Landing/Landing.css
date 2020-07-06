@@ -1,0 +1,47 @@
+
+
+.splash-page {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background: #7a9aeb;
+    font-family: "Press Start 2p", monospace;
+}
+
+.splash-content-wrapper {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center; 
+    margin: 0 auto;
+    width: 100%;
+
+}
+
+.splash-header-container {
+    text-align: center;
+    padding: 5% 0;
+    width: 90%;
+    color: white;
+
+}
+.splash-header-container h1 {
+    font-size: 47.66px;
+}
+.splash-header-container p {
+    font-size: 17px;
+}
+
+@media (min-width: 768px) {
+
+    .splash-content-wrapper {
+        flex-direction: row;
+        justify-content: flex-start;
+        padding: 3.33%
+    }
+    .splash-header-container {
+        text-align: left;
+    }
+ 
+}
