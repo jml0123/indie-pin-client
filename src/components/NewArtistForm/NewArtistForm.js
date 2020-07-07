@@ -54,17 +54,11 @@ export default class NewArtistForm extends Component {
         console.log(this.state)
     }
     handleArtistLookup(e) {
-        const CLIENT_ID = "3e760958614243279a0f130d25c2c433"
-        const CLIENT_SECRET = "0ae78be20707488f993892164f274498"
-        // This should be implemented on server side.
-        const encoded = btoa(`${CLIENT_ID}:${CLIENT_SECRET}`)
-        console.log(encoded)
-    
+        // IMPLEMENT SERVER SIDE AUTH FLOW!!! OR A DIFFERENT ONE USING IMPLICIT GRANT
         const parseUrl = e.target.value.split("/")
         const artistId = parseUrl[parseUrl.length - 1]
         const SPOTIFY_API = "https://api.spotify.com/v1"
         
-        // IMPLEMENT SERVER SIDE AUTH FLOW!!!
         fetch(
             `${SPOTIFY_API}/artists/${artistId}`, 
             {
