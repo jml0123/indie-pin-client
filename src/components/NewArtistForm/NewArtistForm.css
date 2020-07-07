@@ -1,0 +1,108 @@
+.new-artist-form {
+    background: #fcfcfc;
+    color: black;
+    position: relative;
+    min-width: 233px;
+    width: 20vw;
+    max-width: 250px;
+    margin: 0 auto;
+    box-shadow: 0 1px 1px rgba(0,0,0,0.12), 
+    0 2px 2px rgba(0,0,0,0.12), 
+    0 4px 4px rgba(0,0,0,0.12), 
+    0 8px 8px rgba(0,0,0,0.12),
+    0 16px 16px rgba(0,0,0,0.12);
+    padding: 1.2em;
+    opacity: 0.92
+}
+
+.artist-img-wrapper--form {
+    width: 100%;
+    height: auto;
+}
+.artist-img-wrapper--form img {
+    width: 100%;
+    max-width: 250px;
+    
+}
+.artist-form-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.artist-form-header h1, .artist-form-header h2 {
+    margin: 0 auto;
+    padding: 0.33em 0;
+}
+
+.artist-genre {
+    text-transform: capitalize;
+}
+
+
+.artist-popularity-container {
+    z-index: 1;
+    position: absolute;
+    top: -20px;
+    left: -20px;
+    padding: 0.5em;
+    width: 4em;
+    height: 4em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 100%;
+    border: 2px solid slateblue;
+    background: black;
+    box-shadow: 0 1px 1px rgba(0,0,0,0.12), 
+    0 2px 2px rgba(0,0,0,0.12), 
+    0 4px 4px rgba(0,0,0,0.12), 
+    0 8px 8px rgba(0,0,0,0.12),
+    0 16px 16px rgba(0,0,0,0.12);
+}
+
+
+.artist-popularity-container h1 {
+    margin: 0;
+}
+.artist-popularity-container .level-label {
+    font-size: 1em;
+}
+
+.form-input-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 3% 0 1% 0;
+}
+.form-input-container label {
+    font-weight: bold;
+}
+.form-input-container button {
+    margin: 5% 0 2.5% 0;
+    border-radius: 20px;
+    border: 0;
+    padding: 3%;
+    width: 80%;
+    background: #F99308;
+    color: white;
+    cursor: pointer;
+    transition: all 12ms;
+}
+button:disabled{
+    background: grey;
+}
+.form-input-container button:hover:not(button:disabled)  {
+    background: #5eec78;
+}
+
+#spotify-artist-link {
+    width: 80%;
+    border: 0;
+    background: lightgrey;
+    padding: 0.5em;
+    color: black;
+    border-radius: 1px;
+}
