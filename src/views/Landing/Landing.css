@@ -1,10 +1,9 @@
-
-
 .splash-page {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100vh;
+    min-height: 100vh !important;
+    height: 100%;
     background: #7a9aeb;
     font-family: "Press Start 2p", monospace;
 }
@@ -31,6 +30,24 @@
 }
 .splash-header-container p {
     font-size: 17px;
+}
+
+.btn-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    font-family: "Press Start 2P"
+}
+.btn-wrapper span {
+    color: gold
+}
+.btn-wrapper button {
+    border: 0;
+    font-family: "Press Start 2P";
+    padding: 0.66em;
+    border-radius: 1px;
+
 }
 
 @media (min-width: 768px) {

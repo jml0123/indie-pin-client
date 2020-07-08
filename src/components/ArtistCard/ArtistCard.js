@@ -16,19 +16,20 @@ export default class ArtistCard extends Component {
       
     }
     render(){
-        const BandcampLogo = "https://cdn.iconscout.com/icon/free/png-256/bandcamp-1-461777.png"
         const IGLogo = "https://cdn.iconscout.com/icon/free/png-256/instagram-188-498425.png"
+        const SpotifyLogo = "https://developer.spotify.com/assets/branding-guidelines/icon4@2x.png"
         const TwitterLogo = "https://images.vexels.com/media/users/3/137419/isolated/preview/b1a3fab214230557053ed1c4bf17b46c-twitter-icon-logo-by-vexels.png"
         
         // Spotify might not support bandcamp socials?
         const socials = () => {
             let socialsList = []
+            console.log(this.props.data.socials)
             let socialsData = JSON.parse(this.props.data.socials)
             console.log(socialsData)
             for(let [socialPlatform, linkTo] of Object.entries(socialsData)) {
-                let logo = (socialPlatform === "IG")? IGLogo
-                : (socialPlatform === "Bandcamp")? BandcampLogo
-                : (socialPlatform === "Twitter")? TwitterLogo
+                let logo = (socialPlatform === "instagram")? IGLogo
+                : (socialPlatform === "spotify")? SpotifyLogo
+                : (socialPlatform === "spotify")? TwitterLogo
                 : null
         
             socialsList.push(   
@@ -44,7 +45,7 @@ export default class ArtistCard extends Component {
 
         return(
             <div className="artist-card">
-                <div className="artist-popularity-container">
+                <div className="artist-popularity-container" style={{transform: `scale(${0.66  + this.props.data.popularity/133})`}}>
                     <i className="fa fa-caret-up" aria-hidden="true" />
                     <h1 className="level-label">Level</h1>
                     <h1>{this.props.data.popularity}</h1>

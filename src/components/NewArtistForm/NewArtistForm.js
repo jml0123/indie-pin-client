@@ -26,15 +26,17 @@ export default class NewArtistForm extends Component {
     handleSubmit = (e) => {
         e.preventDefault();
         const artistData = this.state.artist
+        const genre = (artistData.genres[0]) ? artistData.genres[0] : "uncategorized"
+        const artistImage = (artistData.images[0]) ? artistData.images[0].url : "https://kansai-resilience-forum.jp/wp-content/uploads/2019/02/IAFOR-Blank-Avatar-Image-1.jpg"
         const serializedArtistData = {
             "type":"Feature",
             "properties": {
                 "popularity": artistData.popularity,
                  "artistName": artistData.name,
-                 "genre": artistData.genres[0],
-                 "image": artistData.images[0].url,
+                 "genre": genre,
+                 "image": artistImage,
                  "linkToSpotify": artistData.external_urls.spotify,
-                 "neighborhood": "Placeholder, calculate on server",
+                 "neighborhood": "Placeholder, calculate locale on server",
                  "socials": artistData.external_urls
             },
             "geometry":{
@@ -43,7 +45,7 @@ export default class NewArtistForm extends Component {
             }
           }
         // This doesn't work. Need to figure out how to render dynamic map based on state
-        //this.props.addArtist(serializedArtistData)
+        this.props.addArtist(serializedArtistData)
     }
 
     setArtistData(artistData) {
@@ -63,7 +65,7 @@ export default class NewArtistForm extends Component {
             `${SPOTIFY_API}/artists/${artistId}`, 
             {
             headers: new Headers({
-                Authorization: `Bearer ${"BQDd9pgUGx6jlfsiRbO87lUprbnWUd_n9eJpTodOulNghV0Bx9XJLeYzz7yUJvVX9VXrKWsurbJhP2WvMBM"}`
+                Authorization: `Bearer ${this.props.auth.token}`
                 })
             })
             .then(res => res.json()
@@ -84,7 +86,7 @@ export default class NewArtistForm extends Component {
         const artistInfo =  (!this.state.artist)? null :
         <div className="artist-form-header">
             <div className="artist-img-wrapper--form">
-                <img src={this.state.artist.images[0].url} alt={this.state.artist.name + " spotify profile img"}/>
+                <img src={(!this.state.artist.images[0].url) ? "https://kansai-resilience-forum.jp/wp-content/uploads/2019/02/IAFOR-Blank-Avatar-Image-1.jpg" : this.state.artist.images[0].url } alt={this.state.artist.name + " spotify profile img"}/>
             </div>
             <h1 className="artist-name">{this.state.artist.name}</h1>
             <h2 className="artist-genre">Genre: {this.state.artist.genres[0]}</h2>
@@ -99,16 +101,35 @@ export default class NewArtistForm extends Component {
             <h1>{this.state.artist.popularity}</h1>
         </div>
 
+
+        const newArtistForm = 
+        <>
+        <i className="fa fa-map-pin" aria-hidden="true"/>
+        <label htmlFor="spotify-artist-link">Pin an artist using their Spotify URL</label>
+        <input type="text" id="spotify-artist-link" onChange={e => this.handleArtistLookup(e)}></input>
+        <button disabled={!this.state.artist}>Submit</button>
+        </>
+
+        const form = (this.props.auth.token)? newArtistForm
+        :  
+        <>
+          <i className="fa fa-map-pin" aria-hidden="true"/>
+            To pin an artist you need to login to Spotify
+            <div
+                className="btn btn--loginApp-link"
+                onClick={e => this.props.auth.spotifyLogin("/map")}
+            >
+            <img className="spotify-logo" src={this.props.auth.icon} alt="Spotify Logo"/> Login with Spotify
+        </div>
+        </>
+
         return(
             <div className="new-artist-form">
                 <form onSubmit={this.handleSubmit}>
                     {artistLevel}
                     {artistInfo}
                     <div className="form-input-container">
-                        <i className="fa fa-map-pin" aria-hidden="true"/>
-                        <label htmlFor="spotify-artist-link">Pin an artist using their Spotify URL</label>
-                        <input type="text" id="spotify-artist-link" onChange={e => this.handleArtistLookup(e)}></input>
-                        <button disabled={!this.state.artist}>Submit</button>
+                        {form}
                     </div>
                 </form>
             </div>
