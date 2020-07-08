@@ -1,0 +1,157 @@
+.artist-card { 
+    background: #fcfcfc;
+    position: relative;
+    min-width: 200px;
+    width: 20vw;
+    max-width: 250px;
+    border-radius: 20px;
+    margin: 0 auto;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.07), 
+    0 2px 4px rgba(0,0,0,0.07), 
+    0 4px 8px rgba(0,0,0,0.07), 
+    0 8px 16px rgba(0,0,0,0.07),
+    0 16px 32px rgba(0,0,0,0.07), 
+    0 32px 64px rgba(0,0,0,0.07);
+    padding: 0.33em;
+    
+}
+.artist-popularity-container {
+    z-index: 1;
+    position: absolute;
+    top: -20px;
+    left: -20px;
+    padding: 0.5em;
+    width: 4em;
+    height: 4em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 100%;
+    border: 2px solid slateblue;
+    background: black;
+    box-shadow: 0 1px 1px rgba(0,0,0,0.12), 
+    0 2px 2px rgba(0,0,0,0.12), 
+    0 4px 4px rgba(0,0,0,0.12), 
+    0 8px 8px rgba(0,0,0,0.12),
+    0 16px 16px rgba(0,0,0,0.12);
+}
+.artist-popularity-container h1 {
+    margin: 0;
+}
+.artist-popularity-container .level-label {
+    font-size: 1em;
+}
+.artist-locale-container {
+    position: relative;
+    margin: 0 auto;
+    background: black;
+    width: 100%;
+    text-align: center;
+    opacity: 0.92;
+    height: auto;
+}
+.artist-locale-container h1 {
+    color: white;
+    font-size: 1em;
+    margin: 0 auto;
+    padding: 0.22em 0;
+
+}
+.artist-popularity-container h1 {
+    color: white;
+    font-size: 1.7em;
+}
+
+.artist-popularity-container i {
+    color: gold;
+    font-size: 1.1em;
+    display: none; /*change this later */
+}
+.artist-card-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.artist-card-header .artist-name{
+    font-size: 1.8em;
+    margin: 0 auto;
+    padding-top: 0.5em;
+}
+.artist-card-header .artist-genre{
+    font-size: 1em;
+    margin: 0 auto;
+    padding: 0.5em;
+    text-transform: capitalize;
+
+}
+
+.artist-img-wrapper {
+    top: 0;
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+    padding: 0;
+}
+.artist-img-wrapper img {
+    height: 100%;
+    width: 100%;
+    border-radius: 10px;
+}
+
+.socials-col {
+    margin: 0;
+    display: flex;
+    flex-direction: row;
+    width: auto;
+    align-items: center;
+    justify-content: space-evenly;
+    border-radius: 20px;
+    margin: 0.5em;
+}
+
+.socials-col a {
+    border-radius: 100%;
+    padding: 3%;
+    margin: 0 1em;
+}
+
+.social-icon-wrapper {
+    max-width: 25px;
+    max-height: 25px;
+    min-width: 25px;
+    min-height: 25px;
+    transition: all 0.06s ease-in;
+}
+.social-icon-wrapper:hover {
+    transform: scale(1.07)
+}
+.social-icon-wrapper img {
+    width: 100%;
+    height: 100%;
+    border-radius: 100%;
+    box-shadow: 0 1px 1px rgba(0,0,0,0.11);
+}
+
+/*
+
+<div className="artist-card">
+                <div className="artist-pop-container">
+                    <h1>{this.props.data.popularity}</h1>
+                </div>
+                <div className="artist-card-header">
+                    <div className="artist-img-wrapper">
+                        <img src={this.props.data.image} alt={this.props.artistName + " spotify profile img"}/>
+                    </div>
+                    <h1 className="artist-name">{this.props.data.artistName}</h1>
+                    <div className="socials-col">
+                        {socials()}
+                    </div>
+                </div>
+                <div className="artist-card-description">
+                    <h1>Bio</h1>
+                    <p>{this.props.data.bio}</p>
+                    <a href={this.props.data.linkToSpotify}>Go to Spotify Profile [PLACEHOLDER]</a>
+                </div>
+            </div>
+*/

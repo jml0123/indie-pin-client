@@ -3,7 +3,7 @@ import "./Chart.css"
 import ChartRow from "../ChartRow/ChartRow"
 
 export default class Chart extends Component {
-
+    // Add reverse geocoded neighborhood endpoints on serverside
     // Make an API call here to get top artists based on popularity and endorsements
     state = {
         artists: [
@@ -44,7 +44,7 @@ export default class Chart extends Component {
                 <div className="Rtable-cell t-heading">Name</div>
                 <div className="Rtable-cell t-heading">Popularity</div>
                 <div className="Rtable-cell t-heading">Genre</div>
-                <div className="Rtable-cell t-heading">Social Links</div>
+                <div className="Rtable-cell t-heading">Links</div>
                 {chartRows}
             </div>   
         )
