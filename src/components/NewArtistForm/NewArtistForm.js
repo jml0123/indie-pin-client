@@ -50,6 +50,7 @@ export default class NewArtistForm extends Component {
         // Then set state afterwards...
         this.setState({
             ...this.state,
+            artist: null,
             result: `Successfully added ${artistData.name}!`
         })
         this.props.addArtist(serializedArtistData)

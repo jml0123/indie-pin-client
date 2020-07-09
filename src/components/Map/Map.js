@@ -280,11 +280,13 @@ map.addControl(
     }
 
     addArtist = (newData) => {
+      console.log(this.state.data.features)
+      this.state.data.features.push(newData)
       this.setState({
         ...this.state,
         data: {
           ...this.state.data, 
-          features: this.state.data.features.push(newData),
+          features: this.state.data.features
         }
       })
       console.log(newData)
