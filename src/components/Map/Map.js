@@ -2,7 +2,8 @@ import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import "../../../node_modules/mapbox-gl/dist/mapbox-gl.css"
 import mapboxgl from 'mapbox-gl';
-
+import * as MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
+import '@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css';
 import ArtistCard from "../ArtistCard/ArtistCard"
 import NewArtistForm from "../NewArtistForm/NewArtistForm"
 
@@ -16,9 +17,11 @@ export default class Map extends Component {
   
 
     state = {
-        lng: 5,
-        lat: 34,
-        zoom: 2,
+        lng: -39.7539,
+        lat: 32.8408,
+        zoom: 1.69,
+        pitch: 0, // pitch in degrees
+        bearing: 0,
         newPin: false,
         // Placeholder for now. Get from server!
         data: {
@@ -87,17 +90,31 @@ export default class Map extends Component {
         const onAddArtist = this.addArtist
         const togglePin = this.togglePin
         const data = this.state.data
-     
         let marker;
+        let timer;
+
+        // make this a util function
+        const loadScript = (src) => {
+          const tag = document.createElement('script');
+          tag.src = src;
+          tag.async = true;
+      
+          document.body.appendChild(tag);    
+        }
+        loadScript("https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.5.1/mapbox-gl-geocoder.min.js")
+
 
         this.map = new mapboxgl.Map({
             container: this.mapContainer,
             style: "mapbox://styles/mapbox/outdoors-v11",
             center: [this.state.lng, this.state.lat],
-            zoom: this.state.zoom
+            zoom: this.state.zoom,
+            bearing: this.state.bearing,
+            pitch: this.state.pitch,
+            center: [this.state.lng, this.state.lat]
         })
-
         const map = this.map;
+      
         const size = 90;
           const pulsingDot = {
           width: size,
@@ -281,6 +298,7 @@ export default class Map extends Component {
         })
 
         map.on("click", (e) => {
+    
           if (marker) {
             marker.remove()
           }
@@ -312,18 +330,20 @@ export default class Map extends Component {
             }
             });
           
-          map.flyTo({
+          // Fly to point
+        map.flyTo({
               center: [e.lngLat.lng, e.lngLat.lat],
-              speed: 0.27,
-              zoom: 9,
-              curve: 2,
+              speed: 0.23,
+              zoom: 6,
+              curve: 2.5,
               easing(t) {
                   return t;
               },
               essential: true
           })
           togglePin()
-      });
+        });
+  
 
         // Make this a re-usable function!
         map.on('click', 'artists-point', (e) => {
@@ -352,8 +372,11 @@ export default class Map extends Component {
           addPopup(<ArtistCard data={artistData} auth={this.props.auth}/>, coordinates)
         });
         map.on('mouseleave', 'artists-point', function(e) {
-          if (marker) {
-            marker.remove()
+          
+          if (marker) {    
+            setTimeout(() => { 
+              marker.remove()
+            }, 2900);
           }
         });
 
@@ -362,22 +385,51 @@ export default class Map extends Component {
                 ...this.state,
                 lng: map.getCenter().lng.toFixed(4),
                 lat: map.getCenter().lat.toFixed(4),
-                zoom: map.getZoom().toFixed(2)
+                zoom: map.getZoom().toFixed(2),
+                pitch: map.getPitch(),
+                bearing: map.getBearing()
+                
                 });
             });
 
+      map.addControl(
+        this.geocoder = new MapboxGeocoder({
+          accessToken: mapboxgl.accessToken,
+          localGeocoder: this.forwardGeocoder,
+          zoom: 14,
+          placeholder: 'Enter search e.g. Delroy Edwards',
+          mapboxgl: mapboxgl
+        }), 'bottom-left'
+      );
 
-      if (map.isStyleLoaded()) {
-        this.setState({
-          ...this.state, 
-          map: this.map
-        })
-      }  
     }
     
+    forwardGeocoder = (query) => {
+      const matchingFeatures = [];
+      const customData = this.state.data
+      for (let i = 0; i < customData.features.length; i++) {
+      let feature = customData.features[i];
+      // handle queries with different capitalization than the source data by calling toLowerCase()
+      if (
+      feature.properties.artistName
+      .toLowerCase()
+      .search(query.toLowerCase()) !== -1
+      ) {
+      // add a tree emoji as a prefix for custom data results
+      // using carmen geojson format: https://github.com/mapbox/carmen/blob/master/carmen-geojson.md
+      feature['place_name'] = `🎵 ${feature.properties.artistName}`
+      feature['center'] = feature.geometry.coordinates;
+      feature['place_type'] = ['artist'];
+      matchingFeatures.push(feature);
+      }
+      }
+      return matchingFeatures;
+    }
     componentWillUnmount() {
       this.map.remove();
     }
+
+ 
 
     addArtist = (newData) => {
       this.setState({
@@ -393,6 +445,9 @@ export default class Map extends Component {
       this.map.getSource('artists').setData(this.state.data)
     }
  
+
+    
+
     togglePin = () => {
         this.setState({
             ...this.state,
@@ -411,7 +466,11 @@ export default class Map extends Component {
 }
 
 /*
-<div className='sidebarStyle' id="DEBUGGER_REMOVE_AFTER_STYLING">
-                <div>Latitude: {this.state.lat} Longitude: {this.state.lng} Zoom: {this.state.zoom}</div>
+     <div className='sidebarStyle' id="DEBUGGER_REMOVE_AFTER_STYLING">
+                <div>
+                    Latitude: {this.state.lat} Longitude: {this.state.lng} Zoom: {this.state.zoom}
+                    Pitch: {this.state.pitch}  Bearing: {this.state.bearing}
+                
+                </div>
             </div>
 */
