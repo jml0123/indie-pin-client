@@ -363,6 +363,7 @@ export default class Map extends Component {
           if (marker) {
             marker.remove()
           }
+          clearTimeout(timer)
           const coordinates = e.features[0].geometry.coordinates.slice();
           const artistData = e.features[0].properties
           console.log(artistData)
@@ -374,7 +375,7 @@ export default class Map extends Component {
         map.on('mouseleave', 'artists-point', function(e) {
           
           if (marker) {    
-            setTimeout(() => { 
+            timer = setTimeout(() => { 
               marker.remove()
             }, 2900);
           }
