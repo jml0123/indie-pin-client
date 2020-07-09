@@ -33,7 +33,7 @@ export default class ArtistCard extends Component {
                 : null
         
             socialsList.push(   
-                <a href={linkTo} key={socialPlatform}>
+                <a href={linkTo} key={socialPlatform} target="_blank">
                     <div className="social-icon-wrapper">
                         <img src={logo}/>
                     </div>
