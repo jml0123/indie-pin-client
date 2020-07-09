@@ -311,11 +311,10 @@ map.addControl(
 }
 
 /*
-     <div className='sidebarStyle' id="DEBUGGER_REMOVE_AFTER_STYLING">
+     <div className='sidebarStyle' id="DEBUGGER_REMOVE_BEFORE_DEPLOY>
                 <div>
                     Latitude: {this.state.lat} Longitude: {this.state.lng} Zoom: {this.state.zoom}
                     Pitch: {this.state.pitch}  Bearing: {this.state.bearing}
-                
                 </div>
             </div>
 */
