@@ -6,7 +6,6 @@ a {
 }
 
 i {
-    padding: 5%;
     opacity: 0.7; 
     transform: scale(1.66);
     transition: all 0.3s;
@@ -57,11 +56,17 @@ nav {
     z-index: 1 !important;
     overflow: hidden;
     right: -15px;
-    top: -52px;
+    top: -55px;
     height: 180px;
     width: 120px;
-    padding: 0;
     overflow: hidden;
+}
+
+.full-menu i {
+    position: absolute;
+    right: 40px;
+    top: 26px;
+
 }
 
 .nav-shape {
@@ -91,11 +96,7 @@ nav {
     justify-content: center;
 }
 
-.full-menu i {
-    position: absolute;
-    right: 20px;
-    top: 10px;
-}
+
 
 .visible {
     display: flex !important;
@@ -119,8 +120,15 @@ nav {
 
 @media (min-width: 768px) {
     .nav-links {
-        top: -49px;
-        right: 28px;
+        top: -58px;
+        right: 20px;
+        padding-top: 0.75em;
+    }
+    .full-menu i {
+        top: 79px;
+        right: 54.5px;
+        padding-top: 0.75em;
+
     }
     .nav-shape{
         width: 130px;
@@ -133,8 +141,5 @@ nav {
     .full-menu{
         width: 33vw !important;
     }
-    .full-menu i {
-        top: 69px;
-        right: 40px;
-    }
+
 }
