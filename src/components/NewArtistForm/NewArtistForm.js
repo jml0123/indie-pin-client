@@ -6,7 +6,9 @@ export default class NewArtistForm extends Component {
         super(props);
         this.state = {
             artist: null,
-            coordinates: this.props.coordinates
+            coordinates: this.props.coordinates,
+            error: null,
+            result: null
         }
     }
    
@@ -44,7 +46,12 @@ export default class NewArtistForm extends Component {
                 "coordinates": this.state.coordinates
             }
           }
-        // This doesn't work. Need to figure out how to render dynamic map based on state
+        // Add POST call here to API
+        // Then set state afterwards...
+        this.setState({
+            ...this.state,
+            result: `Successfully added ${artistData.name}!`
+        })
         this.props.addArtist(serializedArtistData)
     }
 
@@ -77,7 +84,7 @@ export default class NewArtistForm extends Component {
             .catch(error =>{
                 this.setState({
                     ...this.state,
-                    error
+                    error: error
                 })
             })
     }
@@ -105,9 +112,10 @@ export default class NewArtistForm extends Component {
         const newArtistForm = 
         <>
         <i className="fa fa-map-pin" aria-hidden="true"/>
-        <label htmlFor="spotify-artist-link">Pin an artist using their Spotify URL</label>
-        <input type="text" id="spotify-artist-link" onChange={e => this.handleArtistLookup(e)}></input>
-        <button disabled={!this.state.artist}>Submit</button>
+            <label htmlFor="spotify-artist-link">Pin an artist using their Spotify URL</label>
+            <input type="text" id="spotify-artist-link" onChange={e => this.handleArtistLookup(e)}></input>
+            <button disabled={!this.state.artist}>Submit</button>
+            {this.state.result && <div className="result-banner">{this.state.result}</div>}
         </>
 
         const form = (this.props.auth.token)? newArtistForm
