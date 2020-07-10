@@ -125,12 +125,12 @@ nav {
         right: 20px;
     }
     .full-menu i {
-        top: 85px;
-        right: 54.5px;
+        top: 35px;
+        right: 75px;
     }
     .nav-shape{
         width: 130px;
-        height: 130px;
+        display: none;
     }
 
     .nav-links ul {
@@ -138,6 +138,9 @@ nav {
     }
     .full-menu{
         width: 33vw !important;
+        height: 100vh !important;
+        right: 0;
+        top: 0;
     }
 
 }
