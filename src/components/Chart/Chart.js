@@ -2,11 +2,77 @@ import React, {Component} from 'react';
 import "./Chart.css"
 import ChartRow from "../ChartRow/ChartRow"
 
+import config from "../../config";
 export default class Chart extends Component {
-    // Add reverse geocoded neighborhood endpoints on serverside
-    // Make an API call here to get top artists based on popularity and endorsements
+   
     state = {
-        artists: [
+        artists: null,
+        error: null
+    }
+    componentDidMount(){
+        fetch(`${config.API_ENDPOINT}/artists/top/50`, {
+            method: "GET",
+            headers: {
+              "content-type": "application/json",
+            }
+          })
+          .then(res => {
+              if (!res.ok) {
+                throw new Error(res.status);
+              }
+              res.json().then(artistData => 
+                  this.setTopArtists(artistData) 
+            )})
+            .catch(e => {
+                this.setState({
+                    ...this.state,
+                    error: e
+                })
+            })
+    }
+    setTopArtists = (artists) => {
+        this.setState({
+            ...this.state,
+            artists: artists
+        })
+        console.log(this.state.artists)
+    }
+
+    render() {
+        console.log(this.state.artists)
+        let chartRows
+        if (this.state.artists) {
+            chartRows = this.state.artists.map(artist => {
+                return <ChartRow   
+                    artist_name = {artist.properties.artist_name}
+                    genres = {artist.properties.genres}
+                    popularity = {artist.properties.popularity}
+                    link_to_spotify = {artist.properties.link_to_spotify}
+                    social_links = {artist.properties.social_links}
+                    profile_img = {artist.properties.profile_img}
+                    key = {artist.properties.artist_name}
+                />
+            })
+        }
+    
+        return (
+            <div className="Rtable Rtable--4cols Rtable--collapse top-artists-table">
+                <div className="Rtable-cell t-heading">Name</div>
+                <div className="Rtable-cell t-heading">Level</div>
+                <div className="Rtable-cell t-heading">Genre</div>
+                <div className="Rtable-cell t-heading">Links</div>
+                {(!chartRows)? null: chartRows}
+            </div>   
+        )
+    }
+}
+
+
+
+/*
+
+
+[
             { 
                 artistName:  "George Cloonly",
                 genre: "Surf hop",
@@ -27,28 +93,5 @@ export default class Chart extends Component {
                     Bandcamp: "https://bandcamp.com",
                 }
             },
-        ]
-    }
-    render() {
-        const chartRows = this.state.artists.map(artist => {
-            return <ChartRow   
-                artistName = {artist.artistName}
-                genre = {artist.genre}
-                popularity = {artist.popularity}
-                linkToSpotify = {artist.linkToSpotify}
-                socials = {artist.socials}
-            />
-        })
-        return (
-            <div className="Rtable Rtable--4cols Rtable--collapse top-artists-table">
-                <div className="Rtable-cell t-heading">Name</div>
-                <div className="Rtable-cell t-heading">Popularity</div>
-                <div className="Rtable-cell t-heading">Genre</div>
-                <div className="Rtable-cell t-heading">Links</div>
-                {chartRows}
-            </div>   
-        )
-    }
-}
-
-
+        ],
+*/

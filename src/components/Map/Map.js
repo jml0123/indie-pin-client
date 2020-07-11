@@ -10,11 +10,10 @@ import NewArtistForm from "../NewArtistForm/NewArtistForm"
 
 import "./Map.css";
 import _mapSettings from './_mapSettings';
-import './terminal.scss';
 
 import config from "../../config";
 
-
+// Add this to config
 mapboxgl.accessToken = "pk.eyJ1Ijoiam1sOTIxIiwiYSI6ImNrYzc1Z3I0cjBrODIyenFwb2Ywb3R4c28ifQ.3hsSMc5rvev7U5KerHU3zw"
 
 export default class Map extends Component {
@@ -28,7 +27,7 @@ export default class Map extends Component {
         bearing: 0,
         newPin: false,
         map: null,
-        indicator: "SEARCHING",
+        indicator: "SEARCHING...",
         // Placeholder for now. Get from server!
         data: null,
       map: null
@@ -116,7 +115,7 @@ export default class Map extends Component {
                       togglePin()
                   }
                   addPopup(<NewArtistForm coordinates={[e.lngLat.lng, e.lngLat.lat]} addArtist = {onAddArtist} auth={this.props.auth}/>, [e.lngLat.lng, e.lngLat.lat])
-            
+                  indicatorText(true, "SIGNAL ESTABLISHED")
                   var geojson = {
                       type: "FeatureCollection",
                       features: [{
@@ -155,6 +154,7 @@ export default class Map extends Component {
               if (marker) {
                 marker.remove()
               }
+              indicatorText()
               const coordinates = e.features[0].geometry.coordinates.slice();
               const artistData = e.features[0].properties
               console.log(artistData)
@@ -235,17 +235,17 @@ export default class Map extends Component {
     forwardGeocoder = (query) => {
       console.log("called")
       const matchingFeatures = [];
-      const customData = this.getCurrentDataState()
+      const customData = this.state.data;
       for (let i = 0; i < customData.features.length; i++) {
         let feature = customData.features[i];
         // handle queries with different capitalization than the source data by calling toLowerCase()
-        if (feature.properties.artistName
+        if (feature.properties.artist_name
           .toLowerCase()
           .search(query.toLowerCase()) !== -1)
         {
           // add a tree emoji as a prefix for custom data results
           // using carmen geojson format: https://github.com/mapbox/carmen/blob/master/carmen-geojson.md
-          feature['place_name'] = `🎵 ${feature.properties.artistName}`
+          feature['place_name'] = `🎵 ${feature.properties.artist_name}`
           feature['center'] = feature.geometry.coordinates;
           feature['place_type'] = ['artist'];
           matchingFeatures.push(feature);
@@ -275,11 +275,17 @@ export default class Map extends Component {
       this.map.getSource('artists').setData(this.state.data)
     }
  
-    foundArtist = (off) => {
-      if(off) {
+    foundArtist = (off, status) => {
+      if(off && !status) {
         this.setState({
           ...this.state,
           indicator: "SEARCHING..."
+        }) 
+      }
+      else if (off && status) {
+        this.setState({
+          ...this.state,
+          indicator: status
         }) 
       }
       else {
@@ -309,10 +315,11 @@ export default class Map extends Component {
 
     render(){
         return(
-            <div className="container">
+            <>
               <div className='sidebarStyle' id="DEBUGGER_REMOVE_BEFORE_DEPLOY">
                 <div>
                     <h1>INDIEPIN_v0</h1>
+                    <p>WORLD: EARTH</p>
                     <p>STATUS: {this.state.indicator}</p>
                     <p>LAT: {this.state.lat}</p>
                     <p>LNG: {this.state.lng}</p>
@@ -321,8 +328,8 @@ export default class Map extends Component {
                     <p>BEARING: {this.state.bearing}</p>
                 </div>
               </div>
-              <div ref={el => this.mapContainer = el} className="mapContainer screen" />
-            </div>
+              <div ref={el => this.mapContainer = el} className="mapContainer" />
+            </>
         )
     }
 }

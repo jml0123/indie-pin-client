@@ -26,6 +26,7 @@ export default class ArtistCard extends Component {
         const TwitterLogo = "https://images.vexels.com/media/users/3/137419/isolated/preview/b1a3fab214230557053ed1c4bf17b46c-twitter-icon-logo-by-vexels.png"
         
         // Spotify might not support bandcamp socials?
+        // Create reusablehelper function (uses this on chart row too)
         const socials = () => {
             let socialsList = []
             let data = (this.props.data.social_links)
@@ -68,7 +69,7 @@ export default class ArtistCard extends Component {
                         <h1>{this.props.data.neighborhood}</h1>
                     </div>
                     <h1 className="artist-name">{this.props.data.artist_name}</h1>
-                    <h2 className="artist-genre">Genre: {displayedGenre}</h2>
+                    <h2 className="artist-genre">Type: {displayedGenre}</h2>
                     <div className="socials-col">
                         {socials()}
                     </div>

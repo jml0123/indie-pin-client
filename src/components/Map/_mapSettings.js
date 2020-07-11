@@ -104,8 +104,9 @@ const _mapSettings = (map) =>{
               // increase radius as zoom increases
               'heatmap-radius': {
                 stops: [
-                  [1, 5],
-                  [3, 75]
+                  [1, 20],
+                  [4, 150],
+                  [6, 200]
                 ]
               },
               // decrease opacity to transition into the circle layer

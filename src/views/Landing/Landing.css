@@ -4,10 +4,18 @@
     justify-content: center;
     min-height: 100vh !important;
     height: 100%;
-    background: #7a9aeb;
+    background: #1f1e1e;
     font-family: "Press Start 2p", monospace;
 }
-
+.cta-wrapper {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    color: white;
+}
 .splash-content-wrapper {
     display: flex;
     justify-content: center;
@@ -15,7 +23,6 @@
     align-items: center; 
     margin: 0 auto;
     width: 100%;
-
 }
 
 .splash-header-container {
@@ -27,10 +34,15 @@
 }
 .splash-header-container h1 {
     font-size: 47.66px;
+    -webkit-text-stroke-width: 0.6px;
+    -webkit-text-stroke-color: rgb(215, 214, 216);
+    
 }
 .splash-header-container p {
     font-size: 17px;
     line-height: 1.25em;
+    -webkit-text-stroke-width: 0.6px;
+    -webkit-text-stroke-color: rgb(215, 214, 216);
 }
 
 .btn-wrapper {
@@ -44,6 +56,9 @@
 .btn-wrapper span {
     color: gold
 }
+.btn-wrapper span:hover {
+    color: #FFFF00;
+}
 .btn-wrapper button {
     border: 0;
     font-family: "Press Start 2P";
@@ -51,15 +66,28 @@
     border-radius: 1px;
 
 }
+.btn--go {
+    cursor: pointer;
+    border-radius: 5px !important;
+    padding: 4% !important;
+    width: 288px !important;
+}
 
 @media (min-width: 768px) {
 
     .splash-content-wrapper {
-        flex-direction: row;
+        flex-direction: column;
         justify-content: flex-start;
-        padding: 3.33%
+        align-items: start;
+        padding: 5%;
     }
     .splash-header-container {
+        text-align: left;
+    }
+    .cta-wrapper {
+        align-items: start;
+    }
+    .cta-wrapper > p {
         text-align: left;
     }
  
