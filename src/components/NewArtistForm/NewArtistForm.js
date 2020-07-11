@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import "./NewArtistForm.css"
-
+import config from "../../config";
 export default class NewArtistForm extends Component {
     constructor(props){
         super(props);
@@ -28,32 +28,45 @@ export default class NewArtistForm extends Component {
     handleSubmit = (e) => {
         e.preventDefault();
         const artistData = this.state.artist
+        const social_links = Object.values(artistData.external_urls)
         const genre = (artistData.genres[0]) ? artistData.genres[0] : "uncategorized"
         const artistImage = (artistData.images[0]) ? artistData.images[0].url : "https://kansai-resilience-forum.jp/wp-content/uploads/2019/02/IAFOR-Blank-Avatar-Image-1.jpg"
-        const serializedArtistData = {
-            "type":"Feature",
-            "properties": {
-                "popularity": artistData.popularity,
-                 "artistName": artistData.name,
-                 "genre": genre,
-                 "image": artistImage,
-                 "linkToSpotify": artistData.external_urls.spotify,
-                 "neighborhood": "Placeholder, calculate locale on server",
-                 "socials": artistData.external_urls
-            },
-            "geometry":{
-                "type":"Point",
-                "coordinates": this.state.coordinates
+          
+        const newArtist = {
+                artist_name: artistData.name,
+                spotify_id: artistData.id,
+                popularity: artistData.popularity,
+                coordinates: this.state.coordinates,
+                genres: artistData.genres,
+                profile_img: artistImage,
+                link_to_spotify: artistData.external_urls.spotify,
+                social_links: social_links,
+        }
+        fetch(`${config.API_ENDPOINT}/artists`, {
+            method: "POST",
+            body: JSON.stringify(newArtist),
+            headers: {
+              "content-type": "application/json",
             }
-          }
-        // Add POST call here to API
-        // Then set state afterwards...
-        this.setState({
-            ...this.state,
-            artist: null,
-            result: `Successfully added ${artistData.name}!`
         })
-        this.props.addArtist(serializedArtistData)
+          .then(res => {
+              if (!res.ok) {
+                throw new Error(res.status);
+              }
+              res.json().then(artistData => 
+                {this.setState({
+                    ...this.state,
+                    artist: null,
+                    result: `Successfully added ${artistData.properties.artist_name}!`
+                })
+                this.props.addArtist(artistData)}
+            )})
+            .catch(e => {
+                this.setState({
+                    ...this.state,
+                    error: e
+                })
+        })
     }
 
     setArtistData(artistData) {

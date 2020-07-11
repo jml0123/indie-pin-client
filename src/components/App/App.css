@@ -20,6 +20,19 @@
     align-items: center;
     justify-content: center;
 }
+.banner--smblue {
+    background: blue;
+    color:white;
+    min-height: 11px;
+    height: 1.5em;
+    max-height: 25px;
+    font-family: "Press Start 2P", monospace;
+    font-size: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
 .banner > * {
     margin: 0 1em;
@@ -54,6 +67,7 @@
     max-width: 220px;
     cursor: pointer
 }
+
 .spotify-logo {
     width: 25px;
 }

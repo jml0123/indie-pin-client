@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom'
 
-import "./Nav.css"
-
+import "./Nav.scss"
 export default class Nav extends Component {
     constructor(props) {
         super(props)
@@ -18,6 +17,7 @@ export default class Nav extends Component {
         })
     }
     componentDidMount(){
+        // make this a util function
         const loadScript = (src) => {
             const tag = document.createElement('script');
             tag.src = src;
@@ -35,10 +35,11 @@ export default class Nav extends Component {
       }
     
     render () {
-    
-    return(
+    console.log(this.props.darkMode)
+    const darkMode = (this.props.darkMode) ? "nav-wrapper--dark" : "nav-wrapper"
 
-    <div className="nav-wrapper" ref={this.navWrapper} >
+    return(
+    <div className={darkMode} ref={this.navWrapper} >
         <nav>
             <Link to="/">
                 <div className="logo-wrapper">

@@ -65,7 +65,7 @@ const _mapSettings = (map) =>{
         }
       };
 
-
+    map.getCanvas().style.cursor = 'crosshair';
     map.on('load', function() {
         map.addImage('pulsing-dot', pulsingDot, { pixelRatio: 2 });
         map.addLayer({
@@ -104,8 +104,9 @@ const _mapSettings = (map) =>{
               // increase radius as zoom increases
               'heatmap-radius': {
                 stops: [
-                  [1, 5],
-                  [3, 75]
+                  [1, 20],
+                  [4, 150],
+                  [6, 200]
                 ]
               },
               // decrease opacity to transition into the circle layer
@@ -117,7 +118,7 @@ const _mapSettings = (map) =>{
                 ]
               },
             }
-          }, 'waterway-label');
+          });
           map.addLayer({
             id: 'artists-point',
             type: 'circle',
@@ -134,15 +135,15 @@ const _mapSettings = (map) =>{
                 5,
                 'rgba(103,169,207,0.1)',
                 10,
-                'rgba(33,102,172,0.5)',
+                'rgba(33,102,172,0.33)',
                 30,
-                'rgb(103,169,207)',
+                'rgba(103,169,207, 0.44)',
                 50,
-                'rgb(209,229,240)',
+                'rgba(209,229,240, 0.5)',
                 70,
-                'rgb(253,219,199)',
+                'rgba(253,219,199, 0.5)',
                 90,
-                'rgb(239,138,98)',
+                'rgba(239,138,98, 0.5)',
               ],
               'circle-stroke-color': 'white',
               'circle-stroke-width': 1.33,
@@ -153,10 +154,13 @@ const _mapSettings = (map) =>{
                 ]
               }
             }
-          }, 'waterway-label');
+          });
     });
     map.on('mouseenter', 'artists-point', function(e) {
         map.getCanvas().style.cursor = 'pointer';
+    })
+    map.on('mouseleave', 'artists-point', function(e) {
+        map.getCanvas().style.cursor = 'crosshair';
     })
    
 }
