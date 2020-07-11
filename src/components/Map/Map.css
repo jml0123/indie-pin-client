@@ -9,18 +9,27 @@
 }
 
 .sidebarStyle {
-    display: inline-block;
+    display: flex;
+    flex-direction: column;
     position: absolute;
-    top: 0;
-    left: 0;
-    margin: 12px;
-    background-color: #404040;
-    color: #ffffff;
+    bottom: 0;
+    right: 0;
+    color: white;
     z-index: 1 !important;
     padding: 6px;
-    font-weight: bold;
-    }
+    font-family: "Press Start 2P", monospace;
+    font-size: 11px;
+    text-align: right;
+    padding: 2%;
+}
 
+
+.sidebarStyle h1 {
+  font-size: 11px
+}
+.sidebarStyle span {
+  color: #0ef854;
+}
 .artist-form {
     position: absolute;
     top: 0;
@@ -39,13 +48,20 @@
 }
 
   .mapboxgl-popup-content {
+      min-width: 100% !important;
+      position: absolute; 
       padding: 0;
-      width: 180px;
+      border-radius: 20px;
+      background: none;
+      border: 0;
+      bottom: 0.75em;
   }
   
   .mapboxgl-popup-content-wrapper {
     padding: 1%;
-    background: blue;
+  }
+  .mapboxgl-popup-tip{
+    box-shadow: none;
   }
 
   .geocoder {

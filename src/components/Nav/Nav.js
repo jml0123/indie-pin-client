@@ -18,6 +18,7 @@ export default class Nav extends Component {
         })
     }
     componentDidMount(){
+        // make this a util function
         const loadScript = (src) => {
             const tag = document.createElement('script');
             tag.src = src;
