@@ -135,26 +135,3 @@
     border-radius: 100%;
     box-shadow: 0 1px 1px rgba(0,0,0,0.11);
 }
-
-/*
-
-<div className="artist-card">
-                <div className="artist-pop-container">
-                    <h1>{this.props.data.popularity}</h1>
-                </div>
-                <div className="artist-card-header">
-                    <div className="artist-img-wrapper">
-                        <img src={this.props.data.image} alt={this.props.artistName + " spotify profile img"}/>
-                    </div>
-                    <h1 className="artist-name">{this.props.data.artistName}</h1>
-                    <div className="socials-col">
-                        {socials()}
-                    </div>
-                </div>
-                <div className="artist-card-description">
-                    <h1>Bio</h1>
-                    <p>{this.props.data.bio}</p>
-                    <a href={this.props.data.linkToSpotify}>Go to Spotify Profile [PLACEHOLDER]</a>
-                </div>
-            </div>
-*/

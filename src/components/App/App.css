@@ -7,7 +7,7 @@
     opacity: 0.92;
     text-align: center;
 }
-.banner--smblk {
+.banner-sm--blk {
     background: black;
     color:white;
     min-height: 11px;
@@ -20,13 +20,10 @@
     align-items: center;
     justify-content: center;
 }
-.banner--smblk:hover {
-    color:black;
-    background: white;
-}
 
-.banner--smblue {
-    background: blue;
+
+.banner-sm--green {
+    background: #1DB954;
     color:white;
     min-height: 11px;
     height: 1.5em;

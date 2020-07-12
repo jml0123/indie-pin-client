@@ -12,24 +12,18 @@ import "./Map.css";
 import _mapSettings from './_mapSettings';
 import randomString from "../../utils/randomString";
 import config from "../../config";
-
-// Add this to config
-mapboxgl.accessToken = "pk.eyJ1Ijoiam1sOTIxIiwiYSI6ImNrYzc1Z3I0cjBrODIyenFwb2Ywb3R4c28ifQ.3hsSMc5rvev7U5KerHU3zw"
-
+mapboxgl.accessToken = config.MAPBOX_ACCESS_TOKEN
 export default class Map extends Component {
-  
-
-    state = {
-        lng: -43.8748,
-        lat: 31.1083,
+     state = {
+        lng: -70.4303,
+        lat: 34.5490,
         zoom: 2.00,
-        pitch: 0, // pitch in degrees
+        pitch: 0, 
         bearing: 0,
         world: null,
         newPin: false,
         map: null,
         indicator: "SEARCHING...",
-        // Placeholder for now. Get from server!
         data: null,
       map: null
     };
@@ -74,7 +68,6 @@ export default class Map extends Component {
                 }
                 this.setArtists(data)
               
-        
                 // make this a util function
                 const loadScript = (src) => {
                   const tag = document.createElement('script');
@@ -84,9 +77,7 @@ export default class Map extends Component {
                   document.body.appendChild(tag);    
                 }
                 loadScript("https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.5.1/mapbox-gl-geocoder.min.js")
-        
-            
-        
+      
                 this.map = new mapboxgl.Map({
                     container: this.mapContainer,
                     style: "mapbox://styles/jml921/ckcik3yl41j6a1imexnba8j1c",
@@ -204,7 +195,7 @@ export default class Map extends Component {
               // Add to state?
               map.addControl(
                 this.geocoder = new MapboxGeocoder({
-                  accessToken: mapboxgl.accessToken,
+                  accessToken: config.MAPBOX_ACCESS_TOKEN,
                   localGeocoder: this.forwardGeocoder,
                   zoom: 14,
                   placeholder: 'Enter search e.g. Delroy Edwards',
@@ -225,11 +216,6 @@ export default class Map extends Component {
               })
           })}
         
-    
-
-  
-    // Update control?
-
     getCurrentDataState = () => {
       return this.state.data
     }
@@ -245,8 +231,6 @@ export default class Map extends Component {
           .toLowerCase()
           .search(query.toLowerCase()) !== -1)
         {
-          // add a tree emoji as a prefix for custom data results
-          // using carmen geojson format: https://github.com/mapbox/carmen/blob/master/carmen-geojson.md
           feature['place_name'] = `🎵 ${feature.properties.artist_name}`
           feature['center'] = feature.geometry.coordinates;
           feature['place_type'] = ['artist'];
@@ -259,9 +243,6 @@ export default class Map extends Component {
     componentWillUnmount() {
       this.map.remove();
     }
-
-
-   
     addArtist = (newData) => {
       console.log(this.state.data.features)
       this.state.data.features.push(newData)
@@ -306,8 +287,6 @@ export default class Map extends Component {
         })
         console.log(this.state.newPin)
     }
-
-
     setArtists = (geoJSON) => {
       console.log(geoJSON)
       this.setState({
@@ -315,7 +294,6 @@ export default class Map extends Component {
         data: geoJSON
       })
     }
-
     createRandomWorld = () => {
       const altEarth = randomString()
       this.setState({
@@ -325,12 +303,11 @@ export default class Map extends Component {
     }
 
     render(){
-  
         return(
             <>
               <div className='sidebarStyle' id="DEBUGGER_REMOVE_BEFORE_DEPLOY">
                 <div>
-                    <h1>INDIEPIN_v0</h1>
+                    <h1>INDIEPIN_V_{config.VERSION}</h1>
                     <p>WORLD: {this.state.world}</p>
                     <p>STATUS: {this.state.indicator}</p>
                     <p>LAT: {this.state.lat}</p>
@@ -345,65 +322,3 @@ export default class Map extends Component {
         )
     }
 }
-
-/*
-   {
-          "type": "FeatureCollection",
-          "features":[
-              {
-                  "type":"Feature",
-                  "properties": {
-                      "popularity": 68,
-                       "artistName": "Madlib",
-                       "genre": "alternative hip hop",
-                       "image": "https://i.scdn.co/image/5df69b398c260be003acffc215956676388c21bc",
-                       "linkToSpotify": "https://open.spotify.com/artist/5LhTec3c7dcqBvpLRWbMcf",
-                       "neighborhood": "Oxnard, CA",
-                       "socials": {
-                          "spotify": "https://open.spotify.com/artist/5LhTec3c7dcqBvpLRWbMcf"
-                       }
-                  },
-                  "geometry":{
-                      "type":"Point",
-                      "coordinates":[-119.170898,34.196411]
-                  }
-              },
-              {
-                  "type":"Feature",
-                  "properties":{
-                      "popularity": 22,
-                       "artistName": "Delroy Edwards",
-                       "genre": "float house",
-                       "image":"https://i.scdn.co/image/c2264701a33bdf1dc4e6bfdabf29c5107ac41bf4",
-                       "neighborhood": "Los Angeles, CA",
-                       "linkToSpotify": "https://open.spotify.com/artist/683gIqfxdjjg2sowYxBHIQ",
-                       "socials": {
-                          "spotify": "https://open.spotify.com/artist/683gIqfxdjjg2sowYxBHIQ"
-                       }
-                  },
-                  "geometry":{
-                      "type":"Point",
-                      "coordinates":[-118.243683,34.052235]
-                  }
-              },
-              {
-                  "type":"Feature",
-                  "properties":{
-                      "popularity":50,
-                       "artistName": "MIA GLADSTONE",
-                       "genre": "Uncategorized",
-                       "image": "https://i.scdn.co/image/cb2e4e4dabc8134e8b69e35a283873bd2efdcb4d",
-                       "neighborhood": "Maplewood, NJ",
-                       "linkToSpotify": "https://open.spotify.com/artist/6XoXNsXj8wck0oVUNwxcmF",
-                       "socials": {
-                          "spotify": "https://open.spotify.com/artist/6XoXNsXj8wck0oVUNwxcmF"
-                       }
-                  },
-                  "geometry":{
-                      "type":"Point",
-                      "coordinates":[-74.271996,40.729980]
-                  }
-              }
-          ]
-      },
-*/
