@@ -10,7 +10,7 @@ import NewArtistForm from "../NewArtistForm/NewArtistForm"
 
 import "./Map.css";
 import _mapSettings from './_mapSettings';
-
+import randomString from "../../utils/randomString";
 import config from "../../config";
 
 // Add this to config
@@ -20,11 +20,12 @@ export default class Map extends Component {
   
 
     state = {
-        lng: -86.5333,
-        lat: 29.3132,
-        zoom: 3.18,
-        pitch: 60, // pitch in degrees
-        bearing: 55.898190964672956,
+        lng: -43.8748,
+        lat: 31.1083,
+        zoom: 2.00,
+        pitch: 0, // pitch in degrees
+        bearing: 0,
+        world: null,
         newPin: false,
         map: null,
         indicator: "SEARCHING...",
@@ -34,6 +35,7 @@ export default class Map extends Component {
     };
 
     async componentDidMount() {
+      this.createRandomWorld();
       const onAddArtist = this.addArtist
       const togglePin = this.togglePin
       const indicatorText = this.foundArtist;
@@ -87,7 +89,7 @@ export default class Map extends Component {
         
                 this.map = new mapboxgl.Map({
                     container: this.mapContainer,
-                    style: "mapbox://styles/jml921/ckcgjp6130e5r1iruweefl72z",
+                    style: "mapbox://styles/jml921/ckcik3yl41j6a1imexnba8j1c",
                     center: [this.state.lng, this.state.lat],
                     zoom: this.state.zoom,
                     bearing: this.state.bearing,
@@ -258,6 +260,7 @@ export default class Map extends Component {
       this.map.remove();
     }
 
+
    
     addArtist = (newData) => {
       console.log(this.state.data.features)
@@ -313,13 +316,22 @@ export default class Map extends Component {
       })
     }
 
+    createRandomWorld = () => {
+      const altEarth = randomString()
+      this.setState({
+        ...this.state,
+        world: `EARTH ${altEarth}`
+      })
+    }
+
     render(){
+  
         return(
             <>
               <div className='sidebarStyle' id="DEBUGGER_REMOVE_BEFORE_DEPLOY">
                 <div>
                     <h1>INDIEPIN_v0</h1>
-                    <p>WORLD: EARTH</p>
+                    <p>WORLD: {this.state.world}</p>
                     <p>STATUS: {this.state.indicator}</p>
                     <p>LAT: {this.state.lat}</p>
                     <p>LNG: {this.state.lng}</p>

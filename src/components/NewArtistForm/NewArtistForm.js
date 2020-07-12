@@ -8,7 +8,8 @@ export default class NewArtistForm extends Component {
             artist: null,
             coordinates: this.props.coordinates,
             error: null,
-            result: null
+            result: null,
+            validator: null
         }
     }
    
@@ -77,7 +78,24 @@ export default class NewArtistForm extends Component {
         console.log(this.state)
     }
     handleArtistLookup(e) {
-        // IMPLEMENT SERVER SIDE AUTH FLOW!!! OR A DIFFERENT ONE USING IMPLICIT GRANT
+        // if link doesn't have the word spotify
+        // if link doesn't have the world artist
+        // if no artist found
+        if (!e.target.value.includes("https://open.spotify.com")) {
+            this.setState({
+                ...this.state,
+                validator: "Must be a valid spotify link"
+            })
+            return 
+        }
+        else if (!e.target.value.includes("artist")) {
+            this.setState({
+                ...this.state,
+                validator: "Must be a valid spotify artist link (e.g. https://open.spotify.com/artist/:artist_id)"
+            })
+            return
+        }
+        
         const parseUrl = e.target.value.split("/")
         const artistId = parseUrl[parseUrl.length - 1]
         const SPOTIFY_API = "https://api.spotify.com/v1"
@@ -91,18 +109,28 @@ export default class NewArtistForm extends Component {
             })
             .then(res => res.json()
                 .then(data => {
-                    console.log(data)
-                    this.setArtistData(data)
+                    if (!data.error) {
+                        console.log(data)
+                        this.setArtistData(data)
+                    }
+                    else {
+                        this.setState({
+                            ...this.state,
+                            error: data.error.message,
+                            validator: "Artist not found - invalid id"
+                        })
+                        return
+                    }
                 })
             )
             .catch(error =>{
                 this.setState({
                     ...this.state,
-                    error: error
+                    error: error,
                 })
+                return
             })
     }
-    //consider adding heat.wav icon for level placeholder
     render(){
         const artistInfo =  (!this.state.artist)? null :
         <div className="artist-form-header">
@@ -129,6 +157,7 @@ export default class NewArtistForm extends Component {
             <label htmlFor="spotify-artist-link">Pin an artist using their Spotify URL</label>
             <input type="text" id="spotify-artist-link" onChange={e => this.handleArtistLookup(e)}></input>
             <button disabled={!this.state.artist}>Submit</button>
+            {this.state.validator && <div className="result-banner">{this.state.validator}</div>}
             {this.state.result && <div className="result-banner">{this.state.result}</div>}
         </>
 

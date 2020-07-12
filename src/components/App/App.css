@@ -20,6 +20,11 @@
     align-items: center;
     justify-content: center;
 }
+.banner--smblk:hover {
+    color:black;
+    background: white;
+}
+
 .banner--smblue {
     background: blue;
     color:white;

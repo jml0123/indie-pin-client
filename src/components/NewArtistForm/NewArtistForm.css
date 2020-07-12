@@ -106,3 +106,11 @@ button:disabled{
     color: black;
     border-radius: 1px;
 }
+
+.result-banner {
+    width: 100%;
+    text-align: center;
+    background: lightgrey;
+    color: black;
+    margin: 1%;
+}
