@@ -45,7 +45,7 @@
  .top-artists-table {
      background: black;
      padding: 1%;
-     border: 2px solid blue;
+     border: 0;
  }
 
  @media (min-width: 501px){ 
@@ -71,6 +71,9 @@
     }
     .top-header-container p {
         font-size: 17px;
+    }
+    .top-artists-table {
+        border: 2px solid blue;
     }
 
 }

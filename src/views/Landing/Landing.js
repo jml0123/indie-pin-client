@@ -1,5 +1,6 @@
 
 import React, { useContext } from 'react';
+import Div100vh from 'react-div-100vh';
 import {Link} from 'react-router-dom';
 import AuthContext from '../../AuthContext';
 import "./Landing.css"
@@ -21,7 +22,7 @@ export default function LandingPage() {
     </div>
     
     return (
-        <div className="container">
+        <Div100vh className="container">
         <div className="splash-page screen">
         <div className="splash-content-wrapper">
             <div className="splash-header-container">
@@ -33,6 +34,6 @@ export default function LandingPage() {
             </div>
         </div>
         </div>
-        </div>
+        </Div100vh>
     )
 }

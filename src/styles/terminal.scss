@@ -113,9 +113,10 @@ $screen-background:#121010;
   border:none;
 }
 .container>.screen{
-  animation: turn-on 3s linear;
+  //animation: turn-on 3s linear;
   animation-fill-mode:forwards;
 }
+
 
 .container {
   animation:overlay-anim 4s linear;
