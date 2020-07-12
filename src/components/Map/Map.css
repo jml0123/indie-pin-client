@@ -26,8 +26,11 @@
   font-size: 11px;
   display: none;
 }
-.sidebarStyle span {
+.found {
   color: #0ef854;
+}
+.signal {
+  color: #ffd505;
 }
 .artist-form {
     position: absolute;

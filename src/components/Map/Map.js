@@ -20,11 +20,11 @@ export default class Map extends Component {
   
 
     state = {
-        lng: -39.7539,
-        lat: 32.8408,
-        zoom: 1.69,
-        pitch: 0, // pitch in degrees
-        bearing: 0,
+        lng: -86.5333,
+        lat: 29.3132,
+        zoom: 3.18,
+        pitch: 60, // pitch in degrees
+        bearing: 55.898190964672956,
         newPin: false,
         map: null,
         indicator: "SEARCHING...",
@@ -285,13 +285,13 @@ export default class Map extends Component {
       else if (off && status) {
         this.setState({
           ...this.state,
-          indicator: status
+          indicator: <span className="signal">{status}</span>
         }) 
       }
       else {
         this.setState({
           ...this.state,
-          indicator: <span>HEAT SIGNATURE FOUND</span>,
+          indicator: <span className="found">HEAT SIGNATURE FOUND</span>,
         }) 
       }
     }

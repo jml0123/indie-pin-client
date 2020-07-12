@@ -37,9 +37,9 @@ export default class ArtistCard extends Component {
                 : (entry.includes("spotify"))? SpotifyLogo
                 : (entry.includes("twitter"))? TwitterLogo
                 : null
-        
+            const link = entry.replace(/^"(.+(?="$))"$/, '$1')
             socialsList.push(   
-                <a href={entry} key={entry} target="_blank">
+                <a href={link} key={entry} target="_blank">
                     <div className="social-icon-wrapper">
                         <img src={logo}/>
                     </div>
