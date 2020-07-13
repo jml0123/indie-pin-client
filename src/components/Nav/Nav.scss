@@ -71,7 +71,7 @@ nav {
 
 .logo-wrapper {
     flex-grow: 3;
-    width:100%;
+    width: auto;
     pointer-events: auto;
     padding-top: 15px;
     padding-left: 15px;
@@ -162,5 +162,10 @@ nav {
         right: 0;
         top: 0;
     }
+}
 
+@media (max-height: 432px) {
+    .logo-wrapper{ 
+        display: none
+    }
 }

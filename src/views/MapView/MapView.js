@@ -10,6 +10,7 @@ import '../../styles/terminal.scss';
 
 
 export default function MapView() {
+    
     const auth = useContext(AuthContext)
     return(
         <Div100vh className="container">
