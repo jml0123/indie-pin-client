@@ -31,8 +31,8 @@ class App extends Component {
   }
     spotifyLogin = (redirectPath) => {
       // Make this based on development or production environment...
-      //const redirectUri = `https://indie-pin-client.jml0123.vercel.app${redirectPath}`;
-      const redirectUri = `http://localhost:3000${redirectPath}`;
+      const redirectUri = `https://indie-pin-client.jml0123.vercel.app${redirectPath}`;
+      //const redirectUri = `http://localhost:3000${redirectPath}`;
       const scopes = [
         "user-follow-modify",
         "user-follow-read",
