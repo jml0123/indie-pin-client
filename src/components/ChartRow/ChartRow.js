@@ -42,8 +42,8 @@ return (
             <p>{props.artist_name}</p>
         </a>
     </div>
-        <div className="Rtable-cell">
-            {props.popularity}
+        <div className="Rtable-cell popularity-row">
+            <span className="level-label">Level</span>{props.popularity}
         </div>
         <div className="Rtable-cell genre-cell">
             {(!props.genres) ? null 
