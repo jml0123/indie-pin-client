@@ -106,6 +106,7 @@ export default class NewArtistForm extends Component {
             })
             .then(res => res.json()
                 .then(data => {
+                    console.log(data)
                     if (!data.error) {
                         console.log(data)
                         this.setArtistData(data)
@@ -132,7 +133,7 @@ export default class NewArtistForm extends Component {
         const artistInfo =  (!this.state.artist)? null :
         <div className="artist-form-header">
             <div className="artist-img-wrapper--form">
-                <img src={(!this.state.artist.images[0].url) ? "https://kansai-resilience-forum.jp/wp-content/uploads/2019/02/IAFOR-Blank-Avatar-Image-1.jpg" : this.state.artist.images[0].url } alt={this.state.artist.name + " spotify profile img"}/>
+                <img src={(!this.state.artist.images.length) ? "https://kansai-resilience-forum.jp/wp-content/uploads/2019/02/IAFOR-Blank-Avatar-Image-1.jpg" : this.state.artist.images[0].url } alt={this.state.artist.name + " spotify profile img"}/>
             </div>
             <h1 className="artist-name">{this.state.artist.name}</h1>
             <h2 className="artist-genre">Genre: {this.state.artist.genres[0]}</h2>

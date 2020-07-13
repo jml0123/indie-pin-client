@@ -32,12 +32,12 @@ export default class Map extends Component {
     };
 
     async componentDidMount() {
+      // Check to see if user has visited this page before using localStorage
+      // If it's the first time, trigger the tutorial
       let visited = localStorage["visited"];
       if(visited) {
         this.setState({ tutorial: false })
-        //do not view Popup
       } else {
-            //this is the first time
             localStorage["visited"] = true;
             this.setState({ tutorial: true});
       }
@@ -45,6 +45,7 @@ export default class Map extends Component {
       const onAddArtist = this.addArtist
       const togglePin = this.togglePin
       const indicatorText = this.foundArtist;
+      const clickZoom = this.correctedZoom;
       let marker;
       let timer;
 
@@ -144,7 +145,7 @@ export default class Map extends Component {
                 map.flyTo({
                       center: [e.lngLat.lng, e.lngLat.lat],
                       speed: 0.23,
-                      zoom: 6,
+                      zoom: clickZoom(),
                       curve: 2.5,
                       easing(t) {
                           return t;
@@ -191,7 +192,6 @@ export default class Map extends Component {
             }
             indicatorText(true)
           });
-          // Consider removing this after debugging.
           map.on('move', () => {
               this.setState({
                     ...this.state,
@@ -202,10 +202,6 @@ export default class Map extends Component {
                     bearing: map.getBearing()
                   });
                 })
-                
-            
-              // Add to state?
-             
               map.addControl(
                 this.geocoder = new MapboxGeocoder({
                 accessToken: config.MAPBOX_ACCESS_TOKEN,
@@ -232,9 +228,10 @@ export default class Map extends Component {
           })}
 
         
-    getCurrentDataState = () => {
-      return this.state.data
+    correctedZoom = () => {
+      return (this.state.zoom > 6) ? this.state.zoom : 6
     }
+
 
     forwardGeocoder = (query) => {
       const matchingFeatures = [];
