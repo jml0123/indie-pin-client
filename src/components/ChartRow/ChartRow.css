@@ -154,7 +154,7 @@
 
 
 @media (min-width: 768px) {
-    .level-label {
+    .level-label--chart {
         display: none;
     }
     .popularity-row {

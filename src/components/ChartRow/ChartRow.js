@@ -43,7 +43,7 @@ return (
         </a>
     </div>
         <div className="Rtable-cell popularity-row">
-            <span className="level-label">Level</span>{props.popularity}
+            <span className="level-label--chart">Level</span>{props.popularity}
         </div>
         <div className="Rtable-cell genre-cell">
             {(!props.genres) ? null 
