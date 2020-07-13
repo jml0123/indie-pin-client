@@ -7,11 +7,13 @@ import '@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css';
 
 import ArtistCard from "../ArtistCard/ArtistCard"
 import NewArtistForm from "../NewArtistForm/NewArtistForm"
+import PopUp from "../PopUp/PopUp"
 
 import "./Map.css";
 import _mapSettings from './_mapSettings';
 import randomString from "../../utils/randomString";
 import config from "../../config";
+
 mapboxgl.accessToken = config.MAPBOX_ACCESS_TOKEN
 export default class Map extends Component {
      state = {
@@ -25,10 +27,20 @@ export default class Map extends Component {
         map: null,
         indicator: "SEARCHING...",
         data: null,
-      map: null
+        map: null,
+        search: null,
     };
 
     async componentDidMount() {
+      let visited = localStorage["visited"];
+      if(visited) {
+        this.setState({ tutorial: false })
+        //do not view Popup
+      } else {
+            //this is the first time
+            localStorage["visited"] = true;
+            this.setState({ tutorial: true});
+      }
       this.createRandomWorld();
       const onAddArtist = this.addArtist
       const togglePin = this.togglePin
@@ -50,7 +62,7 @@ export default class Map extends Component {
             .setLngLat(coordinates)
             .addTo(this.map);
         }
-        fetch(`${config.API_ENDPOINT}/artists`, {
+          fetch(`${config.API_ENDPOINT}/artists`, {
           method: "GET",
           headers: {
             "content-type": "application/json",
@@ -193,15 +205,18 @@ export default class Map extends Component {
                 
             
               // Add to state?
+             
               map.addControl(
                 this.geocoder = new MapboxGeocoder({
-                  accessToken: config.MAPBOX_ACCESS_TOKEN,
-                  localGeocoder: this.forwardGeocoder,
-                  zoom: 14,
-                  placeholder: 'Enter search e.g. Delroy Edwards',
-                  mapboxgl: mapboxgl
-                }), 'bottom-left'
-              );
+                accessToken: config.MAPBOX_ACCESS_TOKEN,
+                localGeocoder: this.forwardGeocoder,
+                zoom: 14,
+                placeholder: 'Enter search e.g. Delroy Edwards',
+                position: 'bottom-left',
+                mapboxgl: mapboxgl
+              }), 'bottom-left'
+              )
+          
         
               this.setState({
                 ...this.state,
@@ -215,13 +230,13 @@ export default class Map extends Component {
                   error: e
               })
           })}
+
         
     getCurrentDataState = () => {
       return this.state.data
     }
 
     forwardGeocoder = (query) => {
-      console.log("called")
       const matchingFeatures = [];
       const customData = this.state.data;
       for (let i = 0; i < customData.features.length; i++) {
@@ -285,7 +300,13 @@ export default class Map extends Component {
             ...this.state,
             newPin: !this.state.newPin
         })
-        console.log(this.state.newPin)
+    }
+
+    toggleSearch = () => {
+      this.setState({
+          ...this.state,
+          search: !this.state.search
+      })
     }
     setArtists = (geoJSON) => {
       console.log(geoJSON)
@@ -301,6 +322,12 @@ export default class Map extends Component {
         world: `EARTH ${altEarth}`
       })
     }
+    togglePopUp = () =>{
+      this.setState({
+        ...this.state,
+        tutorial: !this.state.tutorial
+      }) 
+    }
 
     render(){
         return(
@@ -315,9 +342,11 @@ export default class Map extends Component {
                     <p>ZOOM: {this.state.zoom}</p>
                     <p>PITCH: {this.state.pitch}</p> 
                     <p>BEARING: {this.state.bearing}</p>
+                    <p id="help" onClick={() => this.togglePopUp()}>HELP</p>
                 </div>
               </div>
               <div ref={el => this.mapContainer = el} className="mapContainer" />
+              {this.state.tutorial && <PopUp closeWindow = {this.togglePopUp} version = {config.VERSION}/>}
             </>
         )
     }

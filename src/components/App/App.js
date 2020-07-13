@@ -10,7 +10,7 @@ import AboutPage from "../../views/About/About";
 import AuthContext from "../../AuthContext";
 
 import "./App.css";
-import SpotifyWhiteIcon from "../../icons/Spotify_Icon_RGB_White.png";
+import SpotifyWhiteIcon from "../../assets/Spotify_Icon_RGB_White.png";
 
 
 // Add a random string for state/encoding here.
@@ -31,8 +31,8 @@ class App extends Component {
   }
     spotifyLogin = (redirectPath) => {
       // Make this based on development or production environment...
-      const redirectUri = `https://indie-pin-client.jml0123.vercel.app${redirectPath}`;
-      //const redirectUri = `http://localhost:3000${redirectPath}`;
+      //const redirectUri = `https://indie-pin-client.jml0123.vercel.app${redirectPath}`;
+      const redirectUri = `http://localhost:3000${redirectPath}`;
       const scopes = [
         "user-follow-modify",
         "user-follow-read",

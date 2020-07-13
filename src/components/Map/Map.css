@@ -42,11 +42,11 @@
     width: 300px;
     height: 200px;
 }
-.test {
-    background: white;
-    outline: 1px solid red;
-    z-index: 1;
-
+#help {
+  cursor: pointer
+}
+#help:hover {
+  color: #fde50d;
 }
 
   .mapboxgl-popup-content {
@@ -67,16 +67,20 @@
   }
 
   .geocoder {
-    position: absolute;
-    z-index: 1;
-    width: 50%;
-    left: 50%;
-    margin-left: -25%;
-    bottom: 10px;
-    }
+      position: absolute;
+      z-index: 1;
+      width: 66%;
+      min-width: 220px;
+      max-width: 250px;
+      margin: 0 auto;
+      left: 0;
+      right: 0;
+      bottom: 40px;
+      z-index: 3 !important;
+  }
+
   .mapboxgl-ctrl-geocoder {
     min-width: 100%;
-    z-index: 3 !important;
   }
  
 
