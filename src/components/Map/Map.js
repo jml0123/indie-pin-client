@@ -254,10 +254,6 @@ export default class Map extends Component {
       }
       return matchingFeatures;
     }
-
-    componentWillUnmount() {
-      this.map.remove();
-    }
     addArtist = (newData) => {
       console.log(this.state.data.features)
       this.state.data.features.push(newData)

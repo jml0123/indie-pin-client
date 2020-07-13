@@ -14,7 +14,7 @@ const TwitterLogo = "https://images.vexels.com/media/users/3/137419/isolated/pre
 const socials = () => {
     let socialsList = []
     let socialsData = (props.social_links)
-
+    if (socialsData) {
     for(let entry of socialsData) {
         let logo = (entry.includes("instagram"))? IGLogo
         : (entry.includes("spotify"))? SpotifyLogo
@@ -30,6 +30,8 @@ const socials = () => {
         )
     }
     return socialsList
+    }
+    return null
 }
 
 return (
@@ -44,7 +46,9 @@ return (
             {props.popularity}
         </div>
         <div className="Rtable-cell genre-cell">
-            {(props.genres[0]) ? props.genres[0] : "Uncategorized"}
+            {(!props.genres) ? null 
+            : (props.genres[0]) ? props.genres[0] 
+            : "Uncategorized"}
         </div>
         <div className="Rtable-cell Rtable-cell--foot">
         <div className="socials-col">
