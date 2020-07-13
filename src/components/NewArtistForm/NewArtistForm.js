@@ -78,9 +78,6 @@ export default class NewArtistForm extends Component {
         console.log(this.state)
     }
     handleArtistLookup(e) {
-        // if link doesn't have the word spotify
-        // if link doesn't have the world artist
-        // if no artist found
         if (!e.target.value.includes("https://open.spotify.com")) {
             this.setState({
                 ...this.state,
@@ -161,7 +158,7 @@ export default class NewArtistForm extends Component {
             {this.state.result && <div className="result-banner">{this.state.result}</div>}
         </>
 
-        const form = (this.props.auth.token)? newArtistForm
+        const form = (!this.props.auth) ? null : (this.props.auth.token)? newArtistForm
         :  
         <>
           <i className="fa fa-map-pin" aria-hidden="true"/>

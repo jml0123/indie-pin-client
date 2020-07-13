@@ -24,7 +24,7 @@ export default function PopUp(props) {
                 <h1>Running Indie Pin Version {props.version}</h1>
                 <i onClick = {() => props.closeWindow()} className="fa fa-times" aria-hidden="true" id="popup-close-btn"></i>
             </div>
-            <div classNAme="popup-description-container">
+            <div className="popup-description-container">
                 <p>Indie Pin is a live heatmap of artists around the globe.</p>
                 <p>Dive into the world and to get a sense of the culture around the area, or
                     pin your favorite artist to their point of origin.
