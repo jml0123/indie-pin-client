@@ -50,27 +50,30 @@
     text-transform: capitalize;
 }
 .chart-img {
-    height: 100%;
-    max-height: 35px;
-    max-width: 35px;
-    border-radius: 100%;
+    max-width: 70%;
+    top: 0;
+    left: 0;
+    position: relative;
+    display: block !important;
     padding: 0;
     margin: 0;
+
 }
 
 .main-info--link {
     min-width: 100%;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
     justify-content: flex-start;
     text-align: left;
 }
 .main-info--link > * {
-    padding: 0 0.633em;
+    padding: 0.5em !important;
 }
 .main-info--link > p {
     min-width: 100%;
+    margin: 0 auto;
     -webkit-text-stroke-width: 0.6px;
     -webkit-text-stroke-color: rgb(215, 214, 216);
 
@@ -124,7 +127,17 @@
     }
     .main-info--link > p{
         min-width: initial;
+        flex-direction: row;
     }
+    .chart-img {
+        height: 100%;
+        max-height: 35px;
+        max-width: 35px;
+        border-radius: 100%;
+        padding: 0;
+        margin: 0;
+    }
+    
 }
 
 
@@ -135,5 +148,16 @@
         border: 0;
         flex-direction: row;
         width: 100%;
+    }
+    .chart-img {
+        height: 100%;
+        max-height: 35px;
+        max-width: 35px;
+        border-radius: 100%;
+        padding: 0;
+        margin: 0;
+    }
+    .main-info--link {
+        flex-direction: row;
     }
 }
