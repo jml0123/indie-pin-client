@@ -1,7 +1,7 @@
 # Indie Pin (Client)
 Indie Pin is a way to promote independent artists around your area. As a fan, you can pin up and coming artists to the public map by submitting their Spotify artist link, and in return, the map will show their Spotify profile, bio and links and level/popularity. As an artist, you can put yourself on the map for other people to discover you. This app is a way to put your favorite artists or your own music on a map and let the world hear the sounds of different areas. The size of the circle represents the artist's popularity (measured by Spotify's popularity index).
 
-![SpaceBG]("./src/assets/globe.jpg")
+![SpaceBG](./src/assets/globe.jpg)
 
 ## Inspiration
 This app was inspired my work with artists and my own experience as a producer knowing that, with the advent of home production methods, there is an immense talentbase right around the corner that should have a platform.
