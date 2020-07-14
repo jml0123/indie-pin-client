@@ -39,7 +39,7 @@ export default function PopUp(props) {
           </div>
           <p>
             The heatmap represents a group of artists in a given location.
-            <span> Hover </span>over a circle to view an aritst.
+            <span> Hover </span>over a circle to view an artist.
             <span> Click </span>on an area to pin an artist and see the heatmap
             intensify. Use an artist's <span>Spotify URL</span> to add them to
             the map. Explore the world and happy hunting!
