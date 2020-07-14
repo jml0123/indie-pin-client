@@ -27,7 +27,6 @@ export default class Map extends Component {
     map: null,
     indicator: "SEARCHING...",
     data: null,
-    map: null,
     search: null,
   };
 
@@ -95,8 +94,7 @@ export default class Map extends Component {
             center: [this.state.lng, this.state.lat],
             zoom: this.state.zoom,
             bearing: this.state.bearing,
-            pitch: this.state.pitch,
-            center: [this.state.lng, this.state.lat],
+            pitch: this.state.pitch
           });
           const map = this.map;
           _mapSettings(map);

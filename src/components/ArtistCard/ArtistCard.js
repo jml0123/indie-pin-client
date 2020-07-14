@@ -44,9 +44,9 @@ export default class ArtistCard extends Component {
           : null;
         const link = entry.replace(/^"(.+(?="$))"$/, "$1");
         socialsList.push(
-          <a href={link} key={entry} target="_blank">
+          <a href={link} key={entry} target="_blank" rel="noopener noreferrer">
             <div className="social-icon-wrapper">
-              <img src={logo} />
+              <img src={logo} alt="social-media-icon"/>
             </div>
           </a>
         );

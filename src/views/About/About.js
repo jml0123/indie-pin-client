@@ -12,9 +12,9 @@ export default function AboutPage() {
         <Nav darkMode={true} />
         <div className="about-content-wrapper">
           <div className="about-info-container">
-            <a href="https://github.com/jml0123" target="_blank">
+            <a href="https://github.com/jml0123" target="_blank" rel="noopener noreferrer">
               <div className="about-img-wrapper">
-                <img src={icon} />
+                <img src={icon} alt="ml-icon-about-page"/>
               </div>
             </a>
           </div>
@@ -32,6 +32,7 @@ export default function AboutPage() {
                 href="https://heatwav.co"
                 target="_blank"
                 className="highlight"
+                rel="noopener noreferrer"
               >
                 {" "}
                 Heat.wav

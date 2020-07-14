@@ -1,6 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import ArtistCard from "../ArtistCard/ArtistCard";
 import "./ChartRow.css";
 
 export default function ChartRow(props) {
@@ -26,9 +24,9 @@ export default function ChartRow(props) {
           : null;
 
         socialsList.push(
-          <a href={entry} key={entry} target="_blank">
+          <a href={entry} key={entry} target="_blank" rel="noopener noreferrer">
             <div className="social-icon-wrapper">
-              <img src={logo} />
+              <img src={logo} alt="social-media-icon" />
             </div>
           </a>
         );
@@ -45,6 +43,7 @@ export default function ChartRow(props) {
           href={props.link_to_spotify}
           target="_blank"
           className="main-info--link"
+          rel="noopener noreferrer"
         >
           <img
             src={props.profile_img}

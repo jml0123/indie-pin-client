@@ -28,7 +28,6 @@ export default class NewArtistForm extends Component {
     e.preventDefault();
     const artistData = this.state.artist;
     const social_links = Object.values(artistData.external_urls);
-    const genre = artistData.genres[0] ? artistData.genres[0] : "uncategorized";
     const artistImage = artistData.images[0]
       ? artistData.images[0].url
       : "https://kansai-resilience-forum.jp/wp-content/uploads/2019/02/IAFOR-Blank-Avatar-Image-1.jpg";
