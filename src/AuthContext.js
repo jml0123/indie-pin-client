@@ -1,8 +1,8 @@
 import React from "react";
 
 const AuthContext = React.createContext({
-    spotifyAuthToken: "",
-    spotifyLogin: () => {}
-})
+  spotifyAuthToken: "",
+  spotifyLogin: () => {},
+});
 
-export default AuthContext
+export default AuthContext;

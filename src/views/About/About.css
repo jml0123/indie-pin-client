@@ -1,86 +1,94 @@
 .about-page {
-    min-height: 100vh !important;
-    height: 100%;
-    width: 100%;
-    background: black;
-    font-family: "Press Start 2P", monospace;
-    cursor: default;
-    color: white;
+  min-height: 100vh !important;
+  height: 100%;
+  width: 100%;
+  background: black;
+  font-family: "Press Start 2P", monospace;
+  cursor: default;
+  color: white;
 }
 .about-content-wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 25% 5%;
-    width: 88vw;
-    margin: 0 auto;
-    max-width: 750px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 25% 5%;
+  width: 88vw;
+  margin: 0 auto;
+  max-width: 750px;
 }
 
 .about-info-container h1 {
-    padding: 2.5%;
+  padding: 2.5%;
 }
 
-.about-img-wrapper{
-    padding: 0.33em;
-    max-width: 200px;
-    min-width: 120px;
-    width: 9vw;
-    margin: 0 auto;
-    cursor: pointer;
-
+.about-img-wrapper {
+  padding: 0.33em;
+  max-width: 200px;
+  min-width: 120px;
+  width: 9vw;
+  margin: 0 auto;
+  cursor: pointer;
 }
 
 .about-img-wrapper img {
-    border-radius: 100%;
-    width: 100%;
-    height: auto;
-    transition: 120ms ease-in;
+  border-radius: 100%;
+  width: 100%;
+  height: auto;
+  transition: 120ms ease-in;
 }
 .about-img-wrapper:hover img {
-    filter: invert(100%);
-    border-radius: 0;
+  filter: invert(100%);
+  border-radius: 0;
 }
 
 .about-description-wrapper {
-    padding: 5% 0.5%;
-    line-height: 1.44em;
-    font-family: 'Source Code Pro', monospace;
-    font-size: 20px;
-    text-align: left;
+  padding: 5% 0.5%;
+  line-height: 1.44em;
+  font-family: "Source Code Pro", monospace;
+  font-size: 20px;
+  text-align: left;
 }
 
 .highlight {
-    color: hotpink;
-    font-weight: bold;
+  color: hotpink;
+  font-weight: bold;
 }
 .highlight:hover {
-    color: rgb(130, 112, 245);
-
+  color: rgb(130, 112, 245);
 }
 
 #sponsor {
-    border: 1px solid transparent;
-    padding: 0.66em;
-    margin-top: 10%;
-    text-align: center;
-    animation: ants 66s linear infinite;
-    background: linear-gradient(black, black) padding-box,
-	            repeating-linear-gradient(-45deg, white 0, white 25%, transparent 0, transparent 50%) 0 / .6em .6em;
+  border: 1px solid transparent;
+  padding: 0.66em;
+  margin-top: 10%;
+  text-align: center;
+  animation: ants 66s linear infinite;
+  background: linear-gradient(black, black) padding-box,
+    repeating-linear-gradient(
+        -45deg,
+        white 0,
+        white 25%,
+        transparent 0,
+        transparent 50%
+      )
+      0 / 0.6em 0.6em;
 }
 
-@keyframes ants { to { background-position: 100% 100% } }
+@keyframes ants {
+  to {
+    background-position: 100% 100%;
+  }
+}
 
 @media (min-width: 768px) {
-     .about-content-wrapper {
-        padding: 10% 5%;
-    }
-    .about-description-wrapper{
-        padding: 5% 2.5%;
-    }
-    #sponsor {
-        padding: 1em;
-        margin-top: 4%;
-
-    }
+  .about-content-wrapper {
+    padding: 10% 5%;
+  }
+  .about-description-wrapper {
+    padding: 5% 2.5%;
+  }
+  #sponsor {
+    padding: 1em;
+    margin-top: 4%;
+  }
 }
