@@ -1,76 +1,75 @@
 .banner {
-    position: absolute;
-    top: 0;
-    width: 100vw;
-    padding: 0.33em 0 0.5em 0;
-    z-index: 1;
-    opacity: 0.92;
-    text-align: center;
+  position: absolute;
+  top: 0;
+  width: 100vw;
+  padding: 0.33em 0 0.5em 0;
+  z-index: 1;
+  opacity: 0.92;
+  text-align: center;
 }
 .banner-sm--blk {
-    background: black;
-    color:white;
-    min-height: 11px;
-    height: 1.5em;
-    max-height: 25px;
-    font-family: "Press Start 2P", monospace;
-    font-size: 8px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  background: black;
+  color: white;
+  min-height: 11px;
+  height: 1.5em;
+  max-height: 25px;
+  font-family: "Press Start 2P", monospace;
+  font-size: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-
 .banner-sm--green {
-    background: #1DB954;
-    color:white;
-    min-height: 11px;
-    height: 1.5em;
-    max-height: 25px;
-    font-family: "Press Start 2P", monospace;
-    font-size: 8px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 3;
+  background: #1db954;
+  color: white;
+  min-height: 11px;
+  height: 1.5em;
+  max-height: 25px;
+  font-family: "Press Start 2P", monospace;
+  font-size: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3;
 }
 
 .banner > * {
-    margin: 0 1em;
+  margin: 0 1em;
 }
 .login-to-spotify {
-    background: black;
-    color: white;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
+  background: black;
+  color: white;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 .login-to-spotify p {
-    padding: 0.33em;
+  padding: 0.33em;
 }
 
 .btn {
-    padding: 0.33em;
-    border: 0;
-    background: grey;
+  padding: 0.33em;
+  border: 0;
+  background: grey;
 }
 .btn--loginApp-link {
-    color: white;
-    margin: 9px 0;
-    border-radius: 5px;
-    background: #1DB954;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-evenly;
-    width: 50%;
-    min-width: 175px;
-    max-width: 220px;
-    cursor: pointer
+  color: white;
+  margin: 9px 0;
+  border-radius: 5px;
+  background: #1db954;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 50%;
+  min-width: 175px;
+  max-width: 220px;
+  cursor: pointer;
 }
 
 .spotify-logo {
-    width: 25px;
+  width: 25px;
 }

@@ -1,94 +1,95 @@
 .splash-page {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh !important;
-    height: 100%;
-    background: #1f1e1e;
-    font-family: "Press Start 2p", monospace;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh !important;
+  height: 100%;
+  background: #1f1e1e;
+  font-family: "Press Start 2p", monospace;
+  background-size: contain !important;
+  background-repeat: no-repeat !important;
 }
 .cta-wrapper {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    width: 100%;
-    padding: 0;
-    margin: 0;
-    color: white;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  color: white;
 }
 .splash-content-wrapper {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center; 
-    margin: 0 auto;
-    width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+  width: 100%;
 }
 
 .splash-header-container {
-    text-align: center;
-    padding: 5% 0;
-    width: 90%;
-    color: white;
-
+  text-align: center;
+  padding: 5% 0;
+  width: 90%;
+  color: white;
 }
 .splash-header-container h1 {
-    font-size: 47.66px;
-    -webkit-text-stroke-width: 0.6px;
-    -webkit-text-stroke-color: rgb(215, 214, 216);
-    
+  font-size: 47.66px;
+  -webkit-text-stroke-width: 0.6px;
+  -webkit-text-stroke-color: rgb(215, 214, 216);
 }
 .splash-header-container p {
-    font-size: 17px;
-    line-height: 1.25em;
-    -webkit-text-stroke-width: 0.6px;
-    -webkit-text-stroke-color: rgb(215, 214, 216);
+  font-size: 17px;
+  line-height: 1.25em;
+  -webkit-text-stroke-width: 0.6px;
+  -webkit-text-stroke-color: rgb(215, 214, 216);
 }
 
 .btn-wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    font-family: "Press Start 2P";
-    line-height: 1.25em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  font-family: "Press Start 2P";
+  line-height: 1.25em;
 }
 .btn-wrapper span {
-    color: gold
+  color: gold;
 }
 .btn-wrapper span:hover {
-    color: #FFFF00;
+  color: #ffff00;
 }
 .btn-wrapper button {
-    border: 0;
-    font-family: "Press Start 2P";
-    padding: 0.66em;
-    border-radius: 1px;
-
+  border: 0;
+  font-family: "Press Start 2P";
+  padding: 0.66em;
+  border-radius: 1px;
 }
 .btn--go {
-    cursor: pointer;
-    border-radius: 5px !important;
-    padding: 4% !important;
-    width: 288px !important;
+  cursor: pointer;
+  border-radius: 5px !important;
+  padding: 4% !important;
+  width: 288px !important;
 }
 
+.version-info {
+  font-family: "Source Code Pro", monospace;
+  color: white;
+}
 @media (min-width: 768px) {
-
-    .splash-content-wrapper {
-        flex-direction: column;
-        justify-content: flex-start;
-        align-items: start;
-        padding: 5%;
-    }
-    .splash-header-container {
-        text-align: left;
-    }
-    .cta-wrapper {
-        align-items: start;
-    }
-    .cta-wrapper > p {
-        text-align: left;
-    }
- 
+  .splash-content-wrapper {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: start;
+    padding: 5%;
+  }
+  .splash-header-container {
+    text-align: left;
+  }
+  .cta-wrapper {
+    align-items: start;
+  }
+  .cta-wrapper > p {
+    text-align: left;
+  }
 }
