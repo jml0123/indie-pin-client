@@ -31,7 +31,7 @@ export default function PopUp(props) {
         <div className="popup-description-container">
           <p>Indie Pin is a live heatmap of artists around the globe.</p>
           <p>
-            Dive into the world and to get a sense of the culture around the
+            Dive into the world to get a sense of the culture around the
             area, or pin your favorite artist to their point of origin.
           </p>
           <div className="popup-img-container">
