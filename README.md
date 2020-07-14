@@ -4,12 +4,16 @@ Indie Pin is a way to promote independent artists around your area. As a fan, yo
 ![SpaceBG](./src/assets/globe.jpg)
 
 ## Inspiration
-This app was inspired my work with artists and my own experience as a producer knowing that. With the advent of home production methods, there is an immense talentbase right around the corner that should have a platform to be discovered.
+This app was inspired my work with artists and my own experience as a producer knowing that with the advent of home production methods, there is an immense talentbase right around the corner that should have a platform to be discovered.
 
 [Link to Site](https://indie-pin-client.jml0123.vercel.app/)
 
-Tutorial GIF
-![Profile Card](./src/assets/indiepin_tutorial.gif)
+#### Current Features (0.1.0)
+- Pin an artist using Spotify URL
+- Get top artists
+- View artists on the map
+
+![Tutorial GIF](./src/assets/indiepin_tutorial.gif)
 
 ## Technology Used
 - PostgreSQL
@@ -20,4 +24,4 @@ Tutorial GIF
 - Spotify API
 
 Here's a 
-[link](https://github.com/jml0123/indie-pin-api) to the Indie Pin repo.
+[link](https://github.com/jml0123/indie-pin-api) to the Indie Pin API repo.
